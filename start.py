@@ -18,7 +18,7 @@ with open("config/os_version.json", "r") as os_version_file:
 def is_connected():
     try:
         
-        response = requests.get("https://www.google.com")
+        response = requests.get("https://www.pythoneverything.com")
         
         if response.status_code == 200:
             return True
@@ -69,13 +69,13 @@ if is_connected():
                         print("SERVICE STARTUP" + service["SERVICE_ID"] + " is not set to start on boot! Continuing...")
                         print()
     else:
-        print("RNCWW | Unable to connect to update server!")
+        print("RNCWW | Is Github down? Unable to connect to update server!")
 else:
     def start_service(service):
         process = subprocess.Popen(["sudo", "python3.10", service["PATH"]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         for line in iter(process.stdout.readline, b''):
             print(line.decode("utf-8").strip())
-    print("RNCWW | Unable to connect to the internet!")
+    print("RNCWW | I tried to contact Python Everything, but i'm unable to connect to the internet!")
     print("Starting RNCWW OS...")
     with open("config/services.json", "r") as services:
                 services = json.load(services)
